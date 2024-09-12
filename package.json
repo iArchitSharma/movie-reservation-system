@@ -1,7 +1,7 @@
 {
   "name": "movie-reservation-system",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend system for a movie reservation service",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
