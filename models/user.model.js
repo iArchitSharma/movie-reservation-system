@@ -1,5 +1,9 @@
+const dotenv = require('dotenv');
 const {Sequelize, DataTypes} = require('sequelize');
-const sequelize = new Sequelize('sqlite::memory:');
+const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: 'db/users.sqlite'
+  });
 
 const User = sequelize.define('User', {
     username: {
