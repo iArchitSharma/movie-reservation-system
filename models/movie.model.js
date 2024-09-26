@@ -1,8 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'db/movies.sqlite'
-  });
+const sequelize = require('../db/db');
 
 const Movie = sequelize.define('Movie', {
     title: {

@@ -9,7 +9,6 @@ app.use(express.json());
 // Import routes
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
-const reservatRoutes = require('./routes/reservat.routes');
 const movieRoutes = require('./routes/movie.routes');
 const showtimeRoutes = require('./routes/showtime.routes');
 
@@ -17,7 +16,6 @@ const showtimeRoutes = require('./routes/showtime.routes');
 // Use routes
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
-app.use('/reservations', reservatRoutes);
 app.use('/movies', movieRoutes);
 app.use('/showtimes', showtimeRoutes);
 
