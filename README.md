@@ -67,3 +67,13 @@ Body: {
 ```
 GET http://localhost:3000/showtimes/1
 ```
+
+### Seat Reservation
+
+```
+POST http://localhost:3000/seats/reserve
+Body: {
+  "showtimeId": 1,
+  "seatPosition": [0, 2]
+}
+```

@@ -9,13 +9,20 @@ exports.createShowtime = async (req, res) => {
     if (!movie) {
       return res.status(404).json({ message: 'Movie not found' });
     }
-    const showtime = await Showtime.create({ date, time, MovieId: movie.id });
+    
+    const showtime = await Showtime.create({
+      date,
+      time,
+      MovieId: movie.id,
+      // Default seats and reservedUsers will be automatically added from the model's defaultValue
+    });
+    
     res.json({ message: 'Showtime created', showtime });
   } catch (error) {
     console.error('Error creating showtime:', error);
     res.status(500).json({
-        message: 'Error creating showtime',
-        error: error.message || error
+      message: 'Error creating showtime',
+      error: error.message || error
     });
   }
 };

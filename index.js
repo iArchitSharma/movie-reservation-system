@@ -11,6 +11,7 @@ const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
 const movieRoutes = require('./routes/movie.routes');
 const showtimeRoutes = require('./routes/showtime.routes');
+const seatRoutes = require('./routes/seat.routes');
 
 
 // Use routes
@@ -18,6 +19,8 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/movies', movieRoutes);
 app.use('/showtimes', showtimeRoutes);
+app.use('/seats', seatRoutes);
+
 
 // Start server
 const PORT = process.env.PORT || 3000;
