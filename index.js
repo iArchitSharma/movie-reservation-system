@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const sequelize = require('./models/db');
 
 dotenv.config();
 
@@ -8,22 +9,19 @@ app.use(express.json());
 
 // Import routes
 const authRoutes = require('./routes/auth.routes');
-const userRoutes = require('./routes/user.routes');
-const movieRoutes = require('./routes/movie.routes');
-const showtimeRoutes = require('./routes/showtime.routes');
-const seatRoutes = require('./routes/seat.routes');
 
 
 // Use routes
 app.use('/auth', authRoutes);
-app.use('/users', userRoutes);
-app.use('/movies', movieRoutes);
-app.use('/showtimes', showtimeRoutes);
-app.use('/seats', seatRoutes);
-
 
 // Start server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync();
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
 });

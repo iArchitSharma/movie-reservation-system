@@ -23,7 +23,10 @@ exports.reserveSeat = async (req, res) => {
     seats[row][column] = 1;
     reservedUsers[row][column] = username;
 
-    await showtime.update({ seats, reservedUsers });
+    // Update using setDataValue
+    showtime.setDataValue('seats', seats);
+    showtime.setDataValue('reservedUsers', reservedUsers);
+    await showtime.save(); // Save the changes
 
     res.json({
       message: `Seat reserved by ${username}`,
