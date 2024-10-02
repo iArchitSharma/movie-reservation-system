@@ -30,8 +30,9 @@ GET http://localhost:3000/users
 POST http://localhost:3000/movies
 Body: {
   "title": "Inception",
-  "description": "A mind-bending thriller",
-  "duration": 148
+  "description": "A mind-bending thriller about dream invasion.",
+  "genre": "Sci-Fi",
+  "posterImage": "inception.jpg"
 }
 ```
 
@@ -44,9 +45,10 @@ GET http://localhost:3000/movies
 ```
 PUT http://localhost:3000/movies/1
 Body: {
-  "title": "Interstellar",
-  "description": "A journey through space",
-  "duration": 169
+  "title": "Inception (update)",
+  "description": "A mind-bending thriller about dream invasion.",
+  "genre": "Sci-Fi",
+  "posterImage": "inception_update.jpg"
 }
 ```
 
@@ -57,17 +59,17 @@ DELETE http://localhost:3000/movies/1
 
 ### Create a showtime for a movie:
 ```
-POST http://localhost:3000/showtimes
+POST http://localhost:3000/:movieId/showtimes
 Body: {
-  "movieId": 1,
-  "date": "2024-09-28",
-  "time": "19:00:00"
-}
+    date: '2023-10-05',
+    time: '19:30',
+    capacity: 100
+  }
 ```
 
 ### Get showtimes for a movie:
 ```
-GET http://localhost:3000/showtimes/1
+GET http://localhost:3000/:movieId/showtimes
 ```
 
 ### Seat Reservation
