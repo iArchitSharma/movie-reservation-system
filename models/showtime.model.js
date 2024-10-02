@@ -1,27 +1,24 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../db/db');
+const { DataTypes } = require('sequelize');
+const sequelize = require('./db');
 const { Movie } = require('./movie.model');
 
 const Showtime = sequelize.define('Showtime', {
   date: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     allowNull: false,
   },
   time: {
     type: DataTypes.TIME,
     allowNull: false,
   },
-  seats: {
-    type: DataTypes.JSON,  // Store the 2D array for seats
-    defaultValue: [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],  // Default to 10 seats (5x2)
+  capacity: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
-  reservedUsers: {
-    type: DataTypes.JSON,  // Store the usernames array
-    defaultValue: [['*', '*', '*', '*', '*'], ['*', '*', '*', '*', '*']],
-  },
-});
+}, { timestamps: true });
 
-Showtime.belongsTo(Movie); // A showtime belongs to one movie
+Movie.hasMany(Showtime, { foreignKey: 'movieId', onDelete: 'CASCADE' });
+Showtime.belongsTo(Movie, { foreignKey: 'movieId' });
 
-sequelize.sync();
-module.exports = { Showtime, sequelize };
+
+module.exports = { Showtime };

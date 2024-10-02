@@ -1,33 +1,27 @@
-
 const jwt = require('jsonwebtoken');
-const { User } = require('../models/user.model'); 
 
-const authenticate = async (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+// Middleware to verify JWT token and protect routes
+exports.verifyToken = (req, res, next) => {
+  const token = req.header('Authorization')?.split(' ')[1];
 
   if (!token) {
-    return res.status(401).json({ message: 'Access token is missing' });
+    return res.status(401).json({ message: 'No token, authorization denied.' });
   }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Decoded token:", decoded);  // Debugging the decoded token
-    
-    // Find user by id instead of username
-    const user = await User.findOne({ where: { id: decoded.id } });
-    
-    if (!user) {
-      return res.status(401).json({ message: 'User not found' });
-    }
-
-    req.user = user; // Attach the authenticated user to the request
+    req.user = decoded;
     next();
   } catch (error) {
-    console.error("JWT verification error:", error); 
-    return res.status(401).json({ message: 'Invalid or expired token' });
+    res.status(401).json({ message: 'Token is not valid' });
   }
 };
 
-
-module.exports = authenticate;
+exports.isAdmin = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    return res
+      .status(403)
+      .json({ message: 'Access denied, only admin allowed' });
+  }
+  next();
+};

@@ -4,8 +4,10 @@
 ```
 POST http://localhost:3000/auth/register
 Body: {
-  "username": "admin",
-  "password": "admin"
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "securepassword",
+  "role": "admin"  // optional
 }
 ```
 
@@ -13,8 +15,8 @@ Body: {
 ```
 POST http://localhost:3000/auth/login
 Body: {
-  "username": "admin",
-  "password": "admin"
+  "email": "johndoe@example.com",
+  "password": "securepassword"
 }
 ```
 

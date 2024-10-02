@@ -1,5 +1,5 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../db/db');
+const { DataTypes } = require('sequelize');
+const sequelize = require('./db');
 
 const Movie = sequelize.define('Movie', {
     title: {
@@ -10,11 +10,15 @@ const Movie = sequelize.define('Movie', {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    duration: {
-      type: DataTypes.INTEGER,
+    genre: {
+      type: DataTypes.STRING,
       allowNull: false,
-    }
-});
+    },
+    posterImage: {
+      type: DataTypes.STRING,
+      allowNull: false, 
+    },
+},
+{ timestamps: true });
 
-sequelize.sync();
-module.exports = {Movie, sequelize};
+module.exports = {Movie};
