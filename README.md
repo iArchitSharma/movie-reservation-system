@@ -1,3 +1,22 @@
+## Features
+
+* **User Authentication & Authorization**:
+    * User registration and login using JSON Web Tokens (JWT).
+    * Role-based access control: admin vs. regular user.
+
+* **Movie Management**:
+    * Admins can create, update, and delete movies.
+    * Each movie has a title, description, genre, and poster image.
+
+* **Showtime Management**:
+    * Admins can create, update, and delete showtimes for each movie.
+    * Users can browse available showtimes.
+
+* **Reservation Management**:
+    * Users can reserve seats for specific showtimes.
+    * Users can view and cancel their reservations (only for upcoming showtimes).
+    * Admins can view all reservations, seat capacity, and revenue reports.
+
 ## Installation and Setup
 
 ### Prerequisites
