@@ -46,7 +46,7 @@
     touch .env
     ```
 
-    Add the following variables:
+    Add the following variables in your .env file:
     ```env
     PORT=3000
     DB_HOST=localhost
